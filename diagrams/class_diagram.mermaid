@@ -1,0 +1,32 @@
+classDiagram
+    class Crop {
+        +int id
+        +string name
+        +string variety
+        +date planting_date
+        +date harvest_date
+        +createCrop()
+        +updateCrop()
+        +deleteCrop()
+    }
+
+    class Yield {
+        +int id
+        +int crop_id
+        +float yield_amount
+        +date yield_date
+        +addYield()
+        +updateYield()
+    }
+
+    class Farmer {
+        +int id
+        +string name
+        +string contact_info
+        +string location
+        +register()
+        +manageProduce()
+    }
+
+    Crop "1" --> "0..*" Yield : has
+    Farmer "1" --> "0..*" Crop : manages

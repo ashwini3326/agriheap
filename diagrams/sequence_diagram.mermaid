@@ -1,0 +1,9 @@
+sequenceDiagram
+    participant Farmer
+    participant API
+    participant Database
+
+    Farmer->>API: Create Crop
+    API->>Database: Insert Crop Data
+    Database-->>API: Confirmation
+    API-->>Farmer: Crop Created Confirmation

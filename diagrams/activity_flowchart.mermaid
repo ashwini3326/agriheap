@@ -1,0 +1,9 @@
+flowchart TD
+    A[Start] --> B[Farmer Registers]
+    B --> C[Enter Crop Details]
+    C --> D{Valid Details?}
+    D -->|Yes| E[Save to Database]
+    D -->|No| F[Show Error]
+    E --> G[Confirm Registration]
+    F --> B
+    G --> H[End]
