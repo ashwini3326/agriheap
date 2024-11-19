@@ -1,17 +1,18 @@
+# app/schemas/yield.py
+
 from pydantic import BaseModel
-from datetime import date
+from typing import Optional
 
 class YieldBase(BaseModel):
-    crop_id: int
-    harvest_date: date
     quantity: float
-    quality: float
+    harvest_date: int  # Use year or a specific date format (like yyyy-mm-dd)
 
 class YieldCreate(YieldBase):
-    pass
+    crop_id: int  # The crop to which this yield is related
 
 class Yield(YieldBase):
     id: int
+    crop_id: int
 
     class Config:
         orm_mode = True

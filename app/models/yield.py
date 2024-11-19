@@ -1,14 +1,13 @@
-from sqlalchemy import Column, Integer, Float, ForeignKey, Date
+from sqlalchemy import Column, Integer, Float, ForeignKey
 from sqlalchemy.orm import relationship
 from app.db.database import Base
 
 class Yield(Base):
-    __tablename__ = "yields"
+    __tablename__ = 'yields'
 
     id = Column(Integer, primary_key=True, index=True)
-    crop_id = Column(Integer, ForeignKey("crops.id"))
-    harvest_date = Column(Date)
-    quantity = Column(Float)
-    quality = Column(Float)  # This could be a score from 0-100
+    crop_id = Column(Integer, ForeignKey("crops.id"), nullable=False)
+    quantity = Column(Float, nullable=False)  # The amount of crop harvested
+    harvest_date = Column(Integer, nullable=False)  # Year/Date of harvest
 
     crop = relationship("Crop", back_populates="yields")

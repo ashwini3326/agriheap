@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from app.models.crop import Crop
-from app.schemas.crop import CropCreate
+from app.schemas.crop_schema import CropCreate
 
 def get_crop(db: Session, crop_id: int):
     return db.query(Crop).filter(Crop.id == crop_id).first()
@@ -8,8 +8,8 @@ def get_crop(db: Session, crop_id: int):
 def get_crops(db: Session, skip: int = 0, limit: int = 100):
     return db.query(Crop).offset(skip).limit(limit).all()
 
-def create_crop(db: Session, crop: CropCreate):
-    db_crop = Crop(**crop.dict())
+def create_crop(db: Session, crop: CropCreate, owner_id: int):
+    db_crop = Crop(name=crop.name, owner_id=owner_id)  # pass owner_id to the Crop model
     db.add(db_crop)
     db.commit()
     db.refresh(db_crop)
